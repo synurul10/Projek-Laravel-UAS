@@ -25,10 +25,9 @@
                 <td>{{ $item->telepon }}</td>
                 <td>{{ $item->alamat }}</td>
                 <td>{{ $item->prodi }}</td>
-                <!-- Baru sampai sini -->
                 <td>
-                    <a href="{{ route('prodi.edit', $item->id) }}" class="tombol">Edit</a>
-                    <form action="{{ route ('prodi.destroy', $item->id) }}" method="POST"
+                    <a href="{{ route('mahasiswa.edit', $item->id) }}" class="tombol">Edit</a>
+                    <form action="{{ route ('mahasiswa.destroy', $item->id) }}" method="POST"
                     onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"
                     style="display:inline;">
                     @csrf
