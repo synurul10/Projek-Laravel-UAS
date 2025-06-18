@@ -14,5 +14,6 @@
             <li><a href="#">Home</a></li>
             <li><a href="{{ route('prodi.index') }}">Prodi</a></li>
             <li><a href="{{ route('mahasiswa.index') }}">Mahasiswa</a></li>
+            <li><a href="{{ route('dosen.index') }}">Dosen</a></li>
         </ul>
 </div>

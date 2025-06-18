@@ -1,6 +1,6 @@
 @include('layout.header')
     <h3>Edit Data Mahasiswa</h3>
-<!-- edit data prodi -->
+<!-- edit data mahasiswa -->
     <form action="{{ route('mahasiswa.update', $mahasiswa->id) }}" method="POST">
         @csrf
         @method('PUT')
