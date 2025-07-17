@@ -18,10 +18,13 @@ return new class extends Migration
             $table->string('email');
             $table->string('telepon');
             $table->string('alamat');
-            $table->string('prodi');
+            $table->unsignedBigInteger('prodi_id');
             $table->string('jabatan_akademik');
             $table->string('pendidikan_terakhir');
             $table->timestamps();
+
+            // relasi ke tabel prodis
+            $table->foreign('prodi_id')->references('id')->on('prodis')->onDelete('cascade');
         });
     }
 

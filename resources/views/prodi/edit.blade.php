@@ -26,8 +26,9 @@
     <div class="form-group">
         <label for="fakultas">Fakultas:</label>
         <select name="fakultas" id="fakultas" required>
-        <option value="FILKOM" {{ $prodi->fakultas == 'FILKOM' ? 'selected' : '' }}>Fakultas Ilmu Komputer</option>
+        <option value="PASCASARJANA" {{ $prodi->fakultas == 'PASCASARJANA' ? 'selected' : '' }}>Program Pascasarjana</option>
         <option value="FKES" {{ $prodi->fakultas == 'FKES' ? 'selected' : '' }}>Fakultas Kesehatan</option>
+        <option value="FILKOM" {{ $prodi->fakultas == 'FILKOM' ? 'selected' : '' }}>Fakultas Ilmu Komputer</option>
         <option value="FIKH" {{ $prodi->fakultas == 'FIKH' ? 'selected' : '' }}>Fakultas Ilmu Komunikasi dan Hukum</option>
         </select>
     </div>

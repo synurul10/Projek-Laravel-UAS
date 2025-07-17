@@ -29,8 +29,9 @@
     <div class="form-group">
         <label for="fakultas">Fakultas:</label>
         <select name="fakultas" id="fakultas" required>
-            <option value="FILKOM">Fakultas Ilmu Komputer</option>
+            <option value="PASCASARJANA">Program Pascasarjana</option>
             <option value="FKES">Fakultas Kesehatan</option>
+            <option value="FILKOM">Fakultas Ilmu Komputer</option>
             <option value="FIKH">Fakultas Ilmu Komunikasi dan Hukum</option>
         </select>
     </div>

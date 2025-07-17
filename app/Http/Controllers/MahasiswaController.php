@@ -3,103 +3,71 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $allMahasiswa = Mahasiswa::all();
+        $allMahasiswa = Mahasiswa::with('prodi')->get(); // agar relasi prodi ikut dimuat
         return view('mahasiswa.index', compact('allMahasiswa'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('mahasiswa.create');
+        $prodis = Prodi::all();
+        return view('mahasiswa.create', compact('prodis'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
             'nim' => 'required|unique:mahasiswas,nim',
             'nama_mahasiswa' => 'required',
-            'email'    => 'required',
+            'email'    => 'required|email',
             'telepon'   => 'required',
             'alamat'   => 'required',
-            'prodi'   => 'required',
+            'prodi_id'   => 'required|exists:prodis,id',
         ]);
 
-        //buat data
-        $data = [
-            'nim' => $request->nim,
-            'nama_mahasiswa' => $request->nama_mahasiswa,
-            'email' => $request->email,
-            'telepon' => $request->telepon,
-            'alamat' => $request->alamat,
-            'prodi' => $request->prodi,
-        ];
-
-        Mahasiswa::create($data);
+        Mahasiswa::create($validated);
 
         return redirect()->route('mahasiswa.index')->with('success', 'Data Mahasiswa berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Mahasiswa $mahasiswa)
+    public function show($mahasiswa_id)
     {
-        return view('mahasiswa.show', compact('mahasiswa'));
+    $mahasiswa = \App\Models\Mahasiswa::with(['prodi', 'krs.jadwal.dosen', 'krs.matakuliah'])
+                    ->where('id', $mahasiswa_id)
+                    ->firstOrFail();
+
+    return view('krs.show', compact('mahasiswa'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Mahasiswa $mahasiswa)
     {
-        return view('mahasiswa.edit', compact('mahasiswa'));
+        $prodis = Prodi::all();
+        return view('mahasiswa.edit', compact('mahasiswa', 'prodis'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
         $validated = $request->validate([
             'nim' => 'required|unique:mahasiswas,nim,' . $mahasiswa->id,
             'nama_mahasiswa' => 'required',
-            'email'    => 'required',
+            'email'    => 'required|email',
             'telepon'   => 'required',
             'alamat'   => 'required',
-            'prodi'   => 'required',
+            'prodi_id'   => 'required|exists:prodis,id',
         ]);
-        //buat data
-        $data = [
-            'nim' => $request->nim,
-            'nama_mahasiswa' => $request->nama_mahasiswa,
-            'email' => $request->email,
-            'telepon' => $request->telepon,
-            'alamat' => $request->alamat,
-            'prodi' => $request->prodi,
-        ];
 
-        $mahasiswa->update($data);
+        $mahasiswa->update($validated);
 
         return redirect()->route('mahasiswa.index')->with('success', 'Data Mahasiswa Berhasil Diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Mahasiswa $mahasiswa)
     {
         $mahasiswa->delete();

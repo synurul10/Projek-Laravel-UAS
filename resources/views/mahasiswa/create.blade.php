@@ -30,8 +30,13 @@
     </div>
 
     <div class="form-group">
-        <label for="prodi">Prodi:</label>
-        <input type="text" name="prodi" id="prodi" required>
+        <label for="prodi_id">Prodi:</label>
+        <select name="prodi_id" id="prodi_id" required>
+            <option value="">-- Pilih Prodi --</option>
+            @foreach ($prodis as $prodi)
+                <option value="{{ $prodi->id }}">{{ $prodi->nama_prodi }}</option>
+            @endforeach
+        </select>
     </div>
 
     <button type="submit" class="tombol">Simpan</button>

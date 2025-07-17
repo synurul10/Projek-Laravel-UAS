@@ -3,14 +3,14 @@
     <a href="{{ route('prodi.create') }}" class="tombol">Add Prodi</a>
     <table>
         <thead>
-            <try>
+            <tr>
                 <th>ID</th>
                 <th>Kode Prodi</th>
                 <th>Nama Prodi</th>
                 <th>Jenjang</th>
                 <th>Fakultas</th>
                 <th>Actions+</th>
-            </try>
+            </tr>
         </thead>
         <tbody>
             @php $no= 1; @endphp

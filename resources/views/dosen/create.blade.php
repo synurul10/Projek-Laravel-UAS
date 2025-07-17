@@ -30,18 +30,31 @@
     </div>
 
     <div class="form-group">
-        <label for="prodi">Prodi:</label>
-        <input type="text" name="prodi" id="prodi" required>
-    </div>
+    <label for="prodi_id">Prodi:</label>
+    <select name="prodi_id" id="prodi_id" required>
+        <option value="">-- Pilih Prodi --</option>
+        @foreach ($prodis as $prodi)
+            <option value="{{ $prodi->id }}">{{ $prodi->nama_prodi }}</option>
+        @endforeach
+    </select>
+</div>
 
     <div class="form-group">
         <label for="jabatan_akademik">Jabatan Akademik:</label>
-        <input type="text" name="jabatan_akademik" id="jabatan_akademik" required>
+        <select name="jabatan_akademik" id="jabatan_akademik" required>
+            <option value="Asisten Ahli">Asisten Ahli</option>
+            <option value="Lektor">Lektor</option>
+            <option value="Lektor Kepala">Lektor Kepala</option>
+            <option value="Profesor">Profesor atau Guru Besar</option>
+        </select>
     </div>
 
     <div class="form-group">
         <label for="pendidikan_terakhir">Pendidikan Terakhir:</label>
-        <input type="text" name="pendidikan_terakhir" id="pendidikan_terakhir" required>
+        <select name="pendidikan_terakhir" id="pendidikan_terakhir" required>
+            <option value="S2">S2 Magister</option>
+            <option value="S3">S3 Doktor</option>
+        </select>
     </div>
 
     <button type="submit" class="tombol">Simpan</button>

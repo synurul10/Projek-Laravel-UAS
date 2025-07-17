@@ -9,18 +9,22 @@ class Dosen extends Model
 {
     use HasFactory;
 
-    // Nama tabel (opsional jika sesuai konvensi Laravel)
     protected $table = 'dosens';
 
-    // Kolom yang bisa diisi secara massal (untuk create/update)
     protected $fillable = [
         'nidn',
         'nama_dosen',
         'email',
         'telepon',
         'alamat',
-        'prodi',
+        'prodi_id', // gunakan foreign key, bukan string 'prodi'
         'jabatan_akademik',
         'pendidikan_terakhir'
     ];
+
+    // Relasi ke Prodi
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class);
+    }
 }
